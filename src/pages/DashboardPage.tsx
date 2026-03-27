@@ -1,16 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { MessageCircle, CheckSquare, BookOpen, Wallet, Flame, TrendingUp, FolderKanban, Calendar, ArrowRight, ChevronRight, Sparkles } from "lucide-react";
+import { MessageCircle, CheckSquare, BookOpen, Wallet, Flame, TrendingUp, Calendar, ArrowRight, ChevronRight, Sparkles, Clock } from "lucide-react";
 import { mockTasks, mockHabits, mockFinances, mockSubjects } from "@/data/mockData";
+import { format } from "date-fns";
 
 const quickModules = [
-  { icon: CheckSquare, label: "Tarefas", path: "/tasks", color: "text-info" },
-  { icon: BookOpen, label: "Estudos", path: "/studies", color: "text-primary" },
-  { icon: Wallet, label: "Finanças", path: "/finances", color: "text-warning" },
-  { icon: Flame, label: "Hábitos", path: "/habits", color: "text-destructive" },
-  { icon: TrendingUp, label: "Carreira", path: "/career", color: "text-success" },
-  { icon: FolderKanban, label: "Projetos", path: "/projects", color: "text-accent-foreground" },
-  { icon: Calendar, label: "Agenda", path: "/calendar", color: "text-info" },
+  { icon: CheckSquare, label: "Tarefas", path: "/tasks" },
+  { icon: BookOpen, label: "Estudos", path: "/studies" },
+  { icon: Wallet, label: "Finanças", path: "/finances" },
+  { icon: Flame, label: "Hábitos", path: "/habits" },
+  { icon: TrendingUp, label: "Carreira", path: "/career" },
+  { icon: Calendar, label: "Agenda", path: "/calendar" },
 ];
 
 const Card = ({ children, className = "", onClick }: { children: React.ReactNode; className?: string; onClick?: () => void }) => (
@@ -21,7 +21,8 @@ const Card = ({ children, className = "", onClick }: { children: React.ReactNode
 
 export default function DashboardPage() {
   const navigate = useNavigate();
-  const todayTasks = mockTasks.filter(t => !t.done).slice(0, 3);
+  const todayStr = format(new Date(), "yyyy-MM-dd");
+  const todayTasks = mockTasks.filter(t => !t.done).slice(0, 4);
   const pendingHabits = mockHabits.filter(h => !h.done);
   const doneHabits = mockHabits.filter(h => h.done).length;
   const nextExam = mockSubjects[0];
@@ -31,7 +32,7 @@ export default function DashboardPage() {
       {/* Greeting */}
       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
         <p className="text-muted-foreground text-sm">Olá, Lucas 👋</p>
-        <h1 className="text-2xl font-bold mt-0.5">Seu dia organizado</h1>
+        <h1 className="text-2xl font-bold mt-0.5">Atividades do dia</h1>
       </motion.div>
 
       {/* Chat CTA */}
@@ -58,7 +59,7 @@ export default function DashboardPage() {
               className="flex flex-col items-center gap-1.5 min-w-[64px] py-2 px-1 rounded-xl hover:bg-muted transition-colors"
             >
               <div className="w-11 h-11 rounded-xl bg-muted flex items-center justify-center">
-                <m.icon className={`w-5 h-5 ${m.color}`} />
+                <m.icon className="w-5 h-5 text-muted-foreground" />
               </div>
               <span className="text-[10px] font-medium text-muted-foreground">{m.label}</span>
             </button>
@@ -69,13 +70,13 @@ export default function DashboardPage() {
       {/* Upcoming exam alert */}
       {nextExam && (
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}>
-          <Card onClick={() => navigate("/studies")} className="!border-warning/30 bg-warning/5">
+          <Card onClick={() => navigate("/studies")} className="!border-primary/30 bg-primary/5">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-warning/10 flex items-center justify-center">
-                <BookOpen className="w-5 h-5 text-warning" />
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                <BookOpen className="w-5 h-5 text-primary" />
               </div>
               <div className="flex-1">
-                <p className="text-xs font-medium text-warning">Prova amanhã</p>
+                <p className="text-xs font-medium text-primary">Prova amanhã</p>
                 <p className="font-semibold text-sm">{nextExam.name}</p>
               </div>
               <ChevronRight className="w-4 h-4 text-muted-foreground" />
@@ -87,16 +88,26 @@ export default function DashboardPage() {
       {/* Tasks today */}
       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
         <div className="flex items-center justify-between mb-3">
-          <h2 className="font-semibold text-sm">Tarefas de hoje</h2>
+          <h2 className="font-semibold text-sm">Tarefas pendentes</h2>
           <button onClick={() => navigate("/tasks")} className="text-xs text-primary font-medium">Ver todas</button>
         </div>
         <div className="space-y-2">
           {todayTasks.map((task) => (
             <Card key={task.id} className="!p-3">
               <div className="flex items-center gap-3">
-                <div className={`w-3 h-3 rounded-full ${task.priority === "alta" ? "bg-destructive" : task.priority === "média" ? "bg-warning" : "bg-success"}`} />
-                <span className="flex-1 text-sm font-medium">{task.title}</span>
-                <span className="text-xs text-muted-foreground">{task.category}</span>
+                <div className={`w-3 h-3 rounded-full ${task.priority === "alta" ? "bg-destructive" : task.priority === "média" ? "bg-warning" : "bg-accent"}`} />
+                <div className="flex-1 min-w-0">
+                  <span className="text-sm font-medium block truncate">{task.title}</span>
+                  <div className="flex items-center gap-2 mt-0.5">
+                    <span className="text-[10px] text-muted-foreground">{task.category}</span>
+                    {task.dueTime && (
+                      <span className="text-[10px] text-muted-foreground flex items-center gap-0.5">
+                        <Clock className="w-2.5 h-2.5" />{task.dueTime}
+                      </span>
+                    )}
+                    {task.auto && <span className="text-[9px] bg-secondary px-1.5 py-0.5 rounded-full text-secondary-foreground">auto</span>}
+                  </div>
+                </div>
               </div>
             </Card>
           ))}
@@ -132,7 +143,7 @@ export default function DashboardPage() {
           </div>
           <div className="flex gap-4 mt-2">
             <div className="flex items-center gap-1.5">
-              <div className="w-2 h-2 rounded-full bg-success" />
+              <div className="w-2 h-2 rounded-full bg-accent" />
               <span className="text-xs text-muted-foreground">+R$ {mockFinances.income.toLocaleString("pt-BR")}</span>
             </div>
             <div className="flex items-center gap-1.5">
