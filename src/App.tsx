@@ -12,7 +12,6 @@ import StudiesPage from "@/pages/StudiesPage";
 import FinancesPage from "@/pages/FinancesPage";
 import HabitsPage from "@/pages/HabitsPage";
 import CareerPage from "@/pages/CareerPage";
-import ProjectsPage from "@/pages/ProjectsPage";
 import CalendarPage from "@/pages/CalendarPage";
 import ProfilePage from "@/pages/ProfilePage";
 import NotificationsPage from "@/pages/NotificationsPage";
@@ -35,7 +34,6 @@ function AppRoutes() {
       <Route path="/finances" element={<FinancesPage />} />
       <Route path="/habits" element={<HabitsPage />} />
       <Route path="/career" element={<CareerPage />} />
-      <Route path="/projects" element={<ProjectsPage />} />
       <Route path="/calendar" element={<CalendarPage />} />
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/notifications" element={<NotificationsPage />} />

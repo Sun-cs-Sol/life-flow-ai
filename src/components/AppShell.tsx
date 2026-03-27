@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Home, MessageCircle, CheckSquare, BarChart3, User, BookOpen, TrendingUp, FolderKanban, Calendar, Bell } from "lucide-react";
+import { Home, MessageCircle, CheckSquare, BarChart3, User } from "lucide-react";
 import { motion } from "framer-motion";
 
 const tabs = [
@@ -21,15 +21,9 @@ export default function AppShell({ children }: { children: ReactNode }) {
       <header className="sticky top-0 z-40 bg-card/80 backdrop-blur-xl border-b border-border/50 px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-lg gradient-primary flex items-center justify-center">
-            <span className="text-primary-foreground font-bold text-sm">L</span>
+            <span className="text-primary-foreground font-bold text-sm">A</span>
           </div>
-          <span className="font-bold text-lg">LifeOrg</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <button onClick={() => navigate("/notifications")} className="relative w-9 h-9 flex items-center justify-center rounded-full hover:bg-muted transition-colors">
-            <Bell className="w-5 h-5 text-muted-foreground" />
-            <span className="absolute top-1 right-1.5 w-2 h-2 rounded-full bg-destructive" />
-          </button>
+          <span className="font-bold text-lg">Astra</span>
         </div>
       </header>
 
