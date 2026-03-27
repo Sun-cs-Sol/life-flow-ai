@@ -12,6 +12,7 @@ import StudiesPage from "@/pages/StudiesPage";
 import FinancesPage from "@/pages/FinancesPage";
 import HabitsPage from "@/pages/HabitsPage";
 import CareerPage from "@/pages/CareerPage";
+// ProjectsPage removed
 import CalendarPage from "@/pages/CalendarPage";
 import ProfilePage from "@/pages/ProfilePage";
 import NotificationsPage from "@/pages/NotificationsPage";
