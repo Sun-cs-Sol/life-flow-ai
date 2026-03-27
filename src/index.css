@@ -79,13 +79,13 @@
     @apply bg-card/80 backdrop-blur-xl border border-border/50 shadow-sm;
   }
   .gradient-primary {
-    background: linear-gradient(135deg, hsl(5, 100%, 72%), hsl(15, 90%, 65%));
+    background: linear-gradient(135deg, hsl(297, 16%, 36%), hsl(280, 20%, 50%));
   }
   .gradient-dark {
     background: linear-gradient(135deg, hsl(297, 16%, 36%), hsl(300, 6%, 17%));
   }
   .text-gradient {
-    background: linear-gradient(135deg, hsl(5, 100%, 72%), hsl(15, 90%, 65%));
+    background: linear-gradient(135deg, hsl(297, 16%, 36%), hsl(280, 20%, 50%));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
