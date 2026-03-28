@@ -31,10 +31,7 @@ export default function CalendarPage() {
 
   return (
     <div className="px-4 py-5 max-w-lg mx-auto">
-      <div className="flex items-center gap-2 mb-5">
-        <img src={mascotIcon} alt="Astra" className="w-8 h-8 mascot-img" />
-        <h1 className="text-2xl font-bold">Agenda</h1>
-      </div>
+      <h1 className="text-2xl font-bold mb-5">Agenda</h1>
 
       {/* Week view */}
       <div className="flex items-center justify-between mb-4">
