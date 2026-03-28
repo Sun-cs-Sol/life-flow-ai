@@ -3,23 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import mascotIcon from "@/assets/mascot-icon.png";
-import mascotExpressions from "@/assets/mascot-expressions.png";
 
 const slides = [
   {
     title: "Sua vida organizada\ncom inteligência",
     description: "O Astra entende o que você fala e organiza automaticamente nos módulos certos.",
-    useMascot: "icon" as const,
-  },
-  {
-    title: "Fale naturalmente.\nO sistema entende.",
-    description: '"Tenho prova amanhã", "Gastei R$35 no mercado", "Já fiz meu treino" — e pronto.',
-    useMascot: "expressions" as const,
-  },
-  {
-    title: "Tudo em um\nsó lugar",
-    description: "Tarefas, estudos, finanças, hábitos, carreira e projetos — centralizados e integrados.",
-    useMascot: "icon" as const,
   },
 ];
 
@@ -45,9 +33,9 @@ export default function OnboardingPage() {
             className="flex flex-col items-center text-center max-w-sm"
           >
             <img
-              src={slides[step].useMascot === "expressions" ? mascotExpressions : mascotIcon}
+              src={mascotIcon}
               alt="Astra mascot"
-              className={`mascot-img ${slides[step].useMascot === "expressions" ? "w-48 h-auto mb-6" : "w-28 h-28 mb-6"}`}
+              className="mascot-img w-28 h-28 mb-6"
             />
             <h1 className="text-3xl font-bold leading-tight whitespace-pre-line mb-4">{slides[step].title}</h1>
             <p className="text-muted-foreground text-base leading-relaxed">{slides[step].description}</p>
