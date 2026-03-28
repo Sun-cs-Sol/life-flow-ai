@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Home, MessageCircle, CheckSquare, BarChart3, User } from "lucide-react";
 import { motion } from "framer-motion";
+import mascotIcon from "@/assets/mascot-icon.png";
 
 const tabs = [
   { path: "/dashboard", icon: Home, label: "Home" },
