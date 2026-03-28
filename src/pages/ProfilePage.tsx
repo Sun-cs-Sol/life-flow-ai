@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { User, MapPin, DollarSign, CreditCard, Save, ChevronRight, LogOut, Plus, Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { mockProfile, mockFinances } from "@/data/mockData";
+import mascotIcon from "@/assets/mascot-icon.png";
 
 export default function ProfilePage() {
   const navigate = useNavigate();
