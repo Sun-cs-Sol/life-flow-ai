@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { MessageCircle, CheckSquare, BookOpen, Wallet, Flame, TrendingUp, Calendar, ArrowRight, ChevronRight, Sparkles, Clock } from "lucide-react";
 import { mockTasks, mockHabits, mockFinances, mockSubjects } from "@/data/mockData";
 import { format } from "date-fns";
+import mascotIcon from "@/assets/mascot-icon.png";
 
 const quickModules = [
   { icon: CheckSquare, label: "Tarefas", path: "/tasks" },
