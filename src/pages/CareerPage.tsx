@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Target, Award, ChevronDown, ChevronUp, Plus, Globe, Code, FileText, Upload } from "lucide-react";
 import { mockCareerGoals, mockSkills, mockLanguages, mockCertifications, mockFutureGoals } from "@/data/mockData";
+import mascotIcon from "@/assets/mascot-icon.png";
 
 export default function CareerPage() {
   const [showGoals, setShowGoals] = useState(true);
