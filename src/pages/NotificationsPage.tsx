@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Bell, AlertTriangle, Clock, CheckCircle, Info } from "lucide-react";
 import { mockNotifications } from "@/data/mockData";
+import mascotIcon from "@/assets/mascot-icon.png";
 
 const typeConfig: Record<string, { icon: any; color: string }> = {
   urgente: { icon: AlertTriangle, color: "text-destructive bg-destructive/10" },
