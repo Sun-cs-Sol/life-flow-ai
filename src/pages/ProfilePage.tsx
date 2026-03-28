@@ -36,7 +36,7 @@ export default function ProfilePage() {
       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
         className="flex items-center gap-4 p-5 rounded-2xl bg-card border border-border/50 mb-6"
       >
-        <div className="w-16 h-16 rounded-2xl gradient-primary flex items-center justify-center text-2xl font-bold text-primary-foreground">L</div>
+        <img src={mascotIcon} alt="Astra" className="w-16 h-16 rounded-2xl mascot-img" />
         <div className="flex-1">
           <input value={profile.name} onChange={e => setProfile(p => ({ ...p, name: e.target.value }))}
             className="font-bold text-lg bg-transparent border-none outline-none w-full" />

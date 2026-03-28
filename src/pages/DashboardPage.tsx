@@ -40,7 +40,7 @@ export default function DashboardPage() {
       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }}>
         <Card onClick={() => navigate("/chat")} className="gradient-primary !border-0 !text-primary-foreground">
           <div className="flex items-center gap-3">
-            <img src={mascotIcon} alt="Astra" className="w-11 h-11 rounded-xl" />
+            <img src={mascotIcon} alt="Astra" className="w-11 h-11 rounded-xl mascot-img" />
             <div className="flex-1">
               <p className="font-semibold text-sm">Falar com Astra</p>
               <p className="text-xs opacity-80">Fale o que precisa e eu organizo pra você</p>

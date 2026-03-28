@@ -18,7 +18,7 @@ export default function LoginPage() {
     <div className="min-h-screen flex flex-col bg-background px-6 pt-16 pb-8">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-10">
         <div className="flex items-center gap-3 mb-6">
-          <img src={mascotIcon} alt="Astra" className="w-12 h-12 rounded-xl" />
+          <img src={mascotIcon} alt="Astra" className="w-12 h-12 rounded-xl mascot-img" />
           <span className="font-bold text-xl">Astra</span>
         </div>
         <h1 className="text-2xl font-bold mb-1">{isLogin ? "Bem-vindo de volta" : "Crie sua conta"}</h1>

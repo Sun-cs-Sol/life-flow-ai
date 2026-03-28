@@ -14,7 +14,10 @@ const typeConfig: Record<string, { icon: any; color: string }> = {
 export default function NotificationsPage() {
   return (
     <div className="px-4 py-5 max-w-lg mx-auto">
-      <h1 className="text-2xl font-bold mb-5">Notificações</h1>
+      <div className="flex items-center gap-2 mb-5">
+        <img src={mascotIcon} alt="Astra" className="w-8 h-8 mascot-img" />
+        <h1 className="text-2xl font-bold">Notificações</h1>
+      </div>
 
       <div className="space-y-2">
         {mockNotifications.map((n, i) => {

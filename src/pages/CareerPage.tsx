@@ -34,7 +34,10 @@ export default function CareerPage() {
 
   return (
     <div className="px-4 py-5 max-w-lg mx-auto">
-      <h1 className="text-2xl font-bold mb-5">Carreira</h1>
+      <div className="flex items-center gap-2 mb-5">
+        <img src={mascotIcon} alt="Astra" className="w-8 h-8 mascot-img" />
+        <h1 className="text-2xl font-bold">Carreira</h1>
+      </div>
 
       {/* Import resume */}
       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}

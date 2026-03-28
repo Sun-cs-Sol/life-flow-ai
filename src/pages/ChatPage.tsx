@@ -140,7 +140,7 @@ export default function ChatPage() {
           >
             <div className={`max-w-[85%] ${msg.role === "user" ? "" : ""}`}>
               {msg.role === "ai" && (
-                <img src={mascotIcon} alt="Astra" className="w-6 h-6 rounded-full mb-1" />
+                <img src={mascotIcon} alt="Astra" className="w-6 h-6 rounded-full mb-1 mascot-img" />
               )}
               <div className={`px-4 py-3 rounded-2xl text-sm leading-relaxed ${
                 msg.role === "user"
