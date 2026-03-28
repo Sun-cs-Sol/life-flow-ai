@@ -1,26 +1,25 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Brain, MessageCircle, Zap, CheckCircle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import mascotIcon from "@/assets/mascot-icon.png";
+import mascotExpressions from "@/assets/mascot-expressions.png";
 
 const slides = [
   {
-    icon: Brain,
     title: "Sua vida organizada\ncom inteligência",
-    description: "O LifeOrg entende o que você fala e organiza automaticamente nos módulos certos.",
-    gradient: "from-primary/20 to-info/10",
+    description: "O Astra entende o que você fala e organiza automaticamente nos módulos certos.",
+    useMascot: "icon" as const,
   },
   {
-    icon: MessageCircle,
     title: "Fale naturalmente.\nO sistema entende.",
     description: '"Tenho prova amanhã", "Gastei R$35 no mercado", "Já fiz meu treino" — e pronto.',
-    gradient: "from-info/20 to-success/10",
+    useMascot: "expressions" as const,
   },
   {
-    icon: Zap,
     title: "Tudo em um\nsó lugar",
     description: "Tarefas, estudos, finanças, hábitos, carreira e projetos — centralizados e integrados.",
-    gradient: "from-success/20 to-warning/10",
+    useMascot: "icon" as const,
   },
 ];
 
