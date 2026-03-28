@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Send, Sparkles, ChevronRight, BookOpen, CheckSquare, Wallet, Flame, TrendingUp } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import { mockChatMessages, quickPrompts } from "@/data/mockData";
+import mascotIcon from "@/assets/mascot-icon.png";
 
 const moduleIcons: Record<string, any> = {
   Estudos: BookOpen,
