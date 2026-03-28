@@ -125,7 +125,7 @@ export default function ChatPage() {
         {/* Welcome */}
         {messages.length === 0 && (
           <div className="flex flex-col items-center text-center pt-12 px-4">
-            <img src={mascotIcon} alt="Astra" className="w-20 h-20 mb-4" />
+            <img src={mascotIcon} alt="Astra" className="w-20 h-20 mb-4 mascot-img" />
             <h2 className="text-xl font-bold mb-2">Chat Astra</h2>
             <p className="text-sm text-muted-foreground mb-8">Fale o que precisa e eu organizo automaticamente nos módulos certos.</p>
           </div>
