@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { addDays, format, startOfWeek, isSameDay } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import mascotIcon from "@/assets/mascot-icon.png";
 
 const events = [
   { title: "Prova de Banco de Dados", time: "19:00", type: "prova", date: addDays(new Date(), 1) },
