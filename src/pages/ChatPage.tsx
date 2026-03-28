@@ -139,6 +139,9 @@ export default function ChatPage() {
             className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
           >
             <div className={`max-w-[85%] ${msg.role === "user" ? "" : ""}`}>
+              {msg.role === "ai" && (
+                <img src={mascotIcon} alt="Astra" className="w-6 h-6 rounded-full mb-1" />
+              )}
               <div className={`px-4 py-3 rounded-2xl text-sm leading-relaxed ${
                 msg.role === "user"
                   ? "gradient-primary text-primary-foreground rounded-br-md"
