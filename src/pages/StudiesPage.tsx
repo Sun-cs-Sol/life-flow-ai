@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { BookOpen, FileText, Clock, ChevronRight, GraduationCap, Plus, ChevronDown, ChevronUp, Calendar } from "lucide-react";
 import { mockSubjects, mockCourses } from "@/data/mockData";
+import mascotIcon from "@/assets/mascot-icon.png";
 
 type Tab = "faculdade" | "cursos" | "cronograma";
 
