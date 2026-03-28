@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Eye, EyeOff, Mail, Lock, User } from "lucide-react";
+import mascotIcon from "@/assets/mascot-icon.png";
 
 export default function LoginPage() {
   const [isLogin, setIsLogin] = useState(true);
