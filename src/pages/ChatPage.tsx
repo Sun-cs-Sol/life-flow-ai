@@ -125,10 +125,8 @@ export default function ChatPage() {
         {/* Welcome */}
         {messages.length === 0 && (
           <div className="flex flex-col items-center text-center pt-12 px-4">
-            <div className="w-16 h-16 rounded-2xl gradient-primary flex items-center justify-center mb-4">
-              <Sparkles className="w-8 h-8 text-primary-foreground" />
-            </div>
-            <h2 className="text-xl font-bold mb-2">Chat LifeOrg</h2>
+            <img src={mascotIcon} alt="Astra" className="w-20 h-20 mb-4" />
+            <h2 className="text-xl font-bold mb-2">Chat Astra</h2>
             <p className="text-sm text-muted-foreground mb-8">Fale o que precisa e eu organizo automaticamente nos módulos certos.</p>
           </div>
         )}
