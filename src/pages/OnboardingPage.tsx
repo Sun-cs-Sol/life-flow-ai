@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import mascotIcon from "@/assets/mascot-icon.png";
-import mascotExpressions from "@/assets/mascot-expressions.png";
 
 const slides = [
   {
