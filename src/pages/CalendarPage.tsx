@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { addDays, format, startOfWeek, isSameDay } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import mascotIcon from "@/assets/mascot-icon.png";
 
 const events = [
   { title: "Prova de Banco de Dados", time: "19:00", type: "prova", date: addDays(new Date(), 1) },
@@ -30,7 +31,10 @@ export default function CalendarPage() {
 
   return (
     <div className="px-4 py-5 max-w-lg mx-auto">
-      <h1 className="text-2xl font-bold mb-5">Agenda</h1>
+      <div className="flex items-center gap-2 mb-5">
+        <img src={mascotIcon} alt="Astra" className="w-8 h-8 mascot-img" />
+        <h1 className="text-2xl font-bold">Agenda</h1>
+      </div>
 
       {/* Week view */}
       <div className="flex items-center justify-between mb-4">

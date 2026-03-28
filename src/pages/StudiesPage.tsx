@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { BookOpen, FileText, Clock, ChevronRight, GraduationCap, Plus, ChevronDown, ChevronUp, Calendar } from "lucide-react";
 import { mockSubjects, mockCourses } from "@/data/mockData";
+import mascotIcon from "@/assets/mascot-icon.png";
 
 type Tab = "faculdade" | "cursos" | "cronograma";
 
@@ -27,7 +28,10 @@ export default function StudiesPage() {
   return (
     <div className="px-4 py-5 max-w-lg mx-auto">
       <div className="flex items-center justify-between mb-5">
-        <h1 className="text-2xl font-bold">Estudos</h1>
+        <div className="flex items-center gap-2">
+          <img src={mascotIcon} alt="Astra" className="w-8 h-8 mascot-img" />
+          <h1 className="text-2xl font-bold">Estudos</h1>
+        </div>
         <button className="w-10 h-10 rounded-xl gradient-primary flex items-center justify-center active:scale-95 transition-transform">
           <Plus className="w-5 h-5 text-primary-foreground" />
         </button>

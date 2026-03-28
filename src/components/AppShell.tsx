@@ -21,7 +21,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
       {/* Top bar */}
       <header className="sticky top-0 z-40 bg-card/80 backdrop-blur-xl border-b border-border/50 px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <img src={mascotIcon} alt="Astra" className="w-8 h-8 rounded-lg object-cover" />
+          <img src={mascotIcon} alt="Astra" className="w-8 h-8 rounded-lg object-cover mascot-img" />
           <span className="font-bold text-lg">Astra</span>
         </div>
       </header>

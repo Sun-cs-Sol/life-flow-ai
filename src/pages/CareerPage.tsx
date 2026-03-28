@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Target, Award, ChevronDown, ChevronUp, Plus, Globe, Code, FileText, Upload } from "lucide-react";
 import { mockCareerGoals, mockSkills, mockLanguages, mockCertifications, mockFutureGoals } from "@/data/mockData";
+import mascotIcon from "@/assets/mascot-icon.png";
 
 export default function CareerPage() {
   const [showGoals, setShowGoals] = useState(true);
@@ -33,7 +34,10 @@ export default function CareerPage() {
 
   return (
     <div className="px-4 py-5 max-w-lg mx-auto">
-      <h1 className="text-2xl font-bold mb-5">Carreira</h1>
+      <div className="flex items-center gap-2 mb-5">
+        <img src={mascotIcon} alt="Astra" className="w-8 h-8 mascot-img" />
+        <h1 className="text-2xl font-bold">Carreira</h1>
+      </div>
 
       {/* Import resume */}
       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
