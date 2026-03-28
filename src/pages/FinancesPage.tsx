@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight, ArrowDownLeft, Plus, CreditCard, Smartphone, Banknote, X } from "lucide-react";
 import { mockFinances, Transaction } from "@/data/mockData";
+import mascotIcon from "@/assets/mascot-icon.png";
 
 type Tab = "resumo" | "entradas" | "saídas";
 
