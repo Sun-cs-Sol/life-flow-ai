@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Plus, CheckCircle2, Circle, Clock, Zap, X } from "lucide-react";
 import { mockTasks, Task } from "@/data/mockData";
+import mascotIcon from "@/assets/mascot-icon.png";
 
 type FilterType = "todas" | "hoje" | "pendentes" | "concluídas";
 
