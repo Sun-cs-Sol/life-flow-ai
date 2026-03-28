@@ -33,9 +33,9 @@ export default function OnboardingPage() {
             className="flex flex-col items-center text-center max-w-sm"
           >
             <img
-              src={slides[step].useMascot === "expressions" ? mascotExpressions : mascotIcon}
+              src={mascotIcon}
               alt="Astra mascot"
-              className={`mascot-img ${slides[step].useMascot === "expressions" ? "w-48 h-auto mb-6" : "w-28 h-28 mb-6"}`}
+              className="mascot-img w-28 h-28 mb-6"
             />
             <h1 className="text-3xl font-bold leading-tight whitespace-pre-line mb-4">{slides[step].title}</h1>
             <p className="text-muted-foreground text-base leading-relaxed">{slides[step].description}</p>
