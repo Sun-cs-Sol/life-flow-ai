@@ -9,17 +9,6 @@ const slides = [
   {
     title: "Sua vida organizada\ncom inteligência",
     description: "O Astra entende o que você fala e organiza automaticamente nos módulos certos.",
-    useMascot: "icon" as const,
-  },
-  {
-    title: "Fale naturalmente.\nO sistema entende.",
-    description: '"Tenho prova amanhã", "Gastei R$35 no mercado", "Já fiz meu treino" — e pronto.',
-    useMascot: "expressions" as const,
-  },
-  {
-    title: "Tudo em um\nsó lugar",
-    description: "Tarefas, estudos, finanças, hábitos, carreira e projetos — centralizados e integrados.",
-    useMascot: "icon" as const,
   },
 ];
 
