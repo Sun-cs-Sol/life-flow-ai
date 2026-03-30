@@ -9,6 +9,8 @@ import DashboardPage from "@/pages/DashboardPage";
 import ChatPage from "@/pages/ChatPage";
 import TasksPage from "@/pages/TasksPage";
 import StudiesPage from "@/pages/StudiesPage";
+import CourseDetailPage from "@/pages/CourseDetailPage";
+import ComponentDetailPage from "@/pages/ComponentDetailPage";
 import FinancesPage from "@/pages/FinancesPage";
 import HabitsPage from "@/pages/HabitsPage";
 import CareerPage from "@/pages/CareerPage";
