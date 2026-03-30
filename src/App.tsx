@@ -34,6 +34,8 @@ function AppRoutes() {
       <Route path="/chat" element={<ChatPage />} />
       <Route path="/tasks" element={<TasksPage />} />
       <Route path="/studies" element={<StudiesPage />} />
+      <Route path="/studies/:courseId" element={<CourseDetailPage />} />
+      <Route path="/studies/:courseId/:componentId" element={<ComponentDetailPage />} />
       <Route path="/finances" element={<FinancesPage />} />
       <Route path="/habits" element={<HabitsPage />} />
       <Route path="/career" element={<CareerPage />} />
