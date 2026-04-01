@@ -29,6 +29,7 @@ export default function StudiesPage() {
   const navigate = useNavigate();
   const [tab, setTab] = useState<Tab>("cursos");
   const { courses, schedule, addCourse, deleteCourse, addScheduleItem, deleteScheduleItem } = useStudiesStore();
+  const { isActive: focusActive, toggle: toggleFocus } = useFocusModeStore();
 
   const [courseDialogOpen, setCourseDialogOpen] = useState(false);
   const [newCourse, setNewCourse] = useState({ name: "", kind: "" as CourseKind, area: "" as CourseArea });
