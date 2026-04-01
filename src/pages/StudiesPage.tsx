@@ -3,13 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Plus, GraduationCap, BookOpen, Clock, Trash2, Calendar,
-  ChevronRight, Layers
+  ChevronRight, Layers, Zap
 } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
 import { useStudiesStore, type CourseKind, type CourseArea } from "@/stores/studiesStore";
+import { useFocusModeStore } from "@/stores/focusModeStore";
 
 type Tab = "cursos" | "cronograma";
 
@@ -28,6 +29,7 @@ export default function StudiesPage() {
   const navigate = useNavigate();
   const [tab, setTab] = useState<Tab>("cursos");
   const { courses, schedule, addCourse, deleteCourse, addScheduleItem, deleteScheduleItem } = useStudiesStore();
+  const { isActive: focusActive, toggle: toggleFocus } = useFocusModeStore();
 
   const [courseDialogOpen, setCourseDialogOpen] = useState(false);
   const [newCourse, setNewCourse] = useState({ name: "", kind: "" as CourseKind, area: "" as CourseArea });
@@ -70,7 +72,20 @@ export default function StudiesPage() {
   return (
     <div className="px-4 py-5 max-w-lg mx-auto pb-28">
       <div className="flex items-center justify-between mb-5">
-        <h1 className="text-2xl font-bold">Estudos</h1>
+        <div className="flex items-center gap-2">
+          <h1 className="text-2xl font-bold">Estudos</h1>
+          <button
+            onClick={toggleFocus}
+            className={`flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+              focusActive
+                ? "bg-primary text-primary-foreground"
+                : "bg-muted text-muted-foreground hover:bg-primary/10"
+            }`}
+          >
+            <Zap className="w-3.5 h-3.5" />
+            {focusActive ? "Foco ativo" : "Modo Foco"}
+          </button>
+        </div>
 
         {tab === "cursos" ? (
           <Dialog open={courseDialogOpen} onOpenChange={setCourseDialogOpen}>

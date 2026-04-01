@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { User, MapPin, DollarSign, CreditCard, Save, ChevronRight, LogOut, Plus, Trash2 } from "lucide-react";
+import { User, MapPin, DollarSign, CreditCard, LogOut, Plus, Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { mockProfile, mockFinances } from "@/data/mockData";
+import { useUserStore } from "@/stores/userStore";
+import ProgressStats from "@/components/ProgressStats";
 import mascotIcon from "@/assets/mascot-icon.png";
 
 export default function ProfilePage() {
   const navigate = useNavigate();
-  const [profile, setProfile] = useState(mockProfile);
+  const { name } = useUserStore();
+  const [profile, setProfile] = useState({ ...mockProfile, name: name || mockProfile.name });
   const [fixedExpenses, setFixedExpenses] = useState(mockFinances.fixedExpenses);
-  const [editing, setEditing] = useState<string | null>(null);
   const [newExpense, setNewExpense] = useState({ name: "", amount: "", bank: "", dueDay: "" });
   const [showAddExpense, setShowAddExpense] = useState(false);
 
@@ -29,7 +31,7 @@ export default function ProfilePage() {
   const removeExpense = (id: string) => setFixedExpenses(prev => prev.filter(e => e.id !== id));
 
   return (
-    <div className="px-4 py-5 max-w-lg mx-auto">
+    <div className="px-4 py-5 max-w-lg mx-auto pb-28">
       <h1 className="text-2xl font-bold mb-6">Perfil</h1>
 
       {/* User card */}
@@ -45,8 +47,15 @@ export default function ProfilePage() {
         </div>
       </motion.div>
 
-      {/* Salary */}
+      {/* Progress & Streak */}
       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }}
+        className="mb-6"
+      >
+        <ProgressStats />
+      </motion.div>
+
+      {/* Salary */}
+      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
         className="p-4 rounded-2xl bg-card border border-border/50 mb-4"
       >
         <div className="flex items-center gap-3 mb-3">
@@ -63,7 +72,7 @@ export default function ProfilePage() {
       </motion.div>
 
       {/* Address */}
-      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
+      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
         className="p-4 rounded-2xl bg-card border border-border/50 mb-4"
       >
         <div className="flex items-center gap-3 mb-3">
@@ -87,7 +96,7 @@ export default function ProfilePage() {
       </motion.div>
 
       {/* Fixed expenses */}
-      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
+      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
         className="p-4 rounded-2xl bg-card border border-border/50 mb-4"
       >
         <div className="flex items-center justify-between mb-3">
@@ -97,7 +106,7 @@ export default function ProfilePage() {
             </div>
             <div>
               <h2 className="font-semibold text-sm">Despesas fixas</h2>
-              <p className="text-[10px] text-muted-foreground">Geram tarefas automáticas todo mês</p>
+              <p className="text-xs text-muted-foreground">Geram tarefas automáticas todo mês</p>
             </div>
           </div>
           <button onClick={() => setShowAddExpense(!showAddExpense)} className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
@@ -126,7 +135,7 @@ export default function ProfilePage() {
             <div key={e.id} className="flex items-center gap-3 p-3 rounded-xl bg-muted/30">
               <div className="flex-1">
                 <p className="text-sm font-medium">{e.name}</p>
-                <p className="text-[10px] text-muted-foreground">{e.bank} • Dia {e.dueDay}</p>
+                <p className="text-xs text-muted-foreground">{e.bank} • Dia {e.dueDay}</p>
               </div>
               <span className="text-sm font-semibold">R$ {e.amount.toFixed(2)}</span>
               <button onClick={() => removeExpense(e.id)} className="w-7 h-7 rounded-lg flex items-center justify-center hover:bg-destructive/10">
