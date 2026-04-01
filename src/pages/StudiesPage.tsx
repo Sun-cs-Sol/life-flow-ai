@@ -3,13 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Plus, GraduationCap, BookOpen, Clock, Trash2, Calendar,
-  ChevronRight, Layers
+  ChevronRight, Layers, Zap
 } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
 import { useStudiesStore, type CourseKind, type CourseArea } from "@/stores/studiesStore";
+import { useFocusModeStore } from "@/stores/focusModeStore";
 
 type Tab = "cursos" | "cronograma";
 
