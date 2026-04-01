@@ -72,7 +72,20 @@ export default function StudiesPage() {
   return (
     <div className="px-4 py-5 max-w-lg mx-auto pb-28">
       <div className="flex items-center justify-between mb-5">
-        <h1 className="text-2xl font-bold">Estudos</h1>
+        <div className="flex items-center gap-2">
+          <h1 className="text-2xl font-bold">Estudos</h1>
+          <button
+            onClick={toggleFocus}
+            className={`flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+              focusActive
+                ? "bg-primary text-primary-foreground"
+                : "bg-muted text-muted-foreground hover:bg-primary/10"
+            }`}
+          >
+            <Zap className="w-3.5 h-3.5" />
+            {focusActive ? "Foco ativo" : "Modo Foco"}
+          </button>
+        </div>
 
         {tab === "cursos" ? (
           <Dialog open={courseDialogOpen} onOpenChange={setCourseDialogOpen}>
