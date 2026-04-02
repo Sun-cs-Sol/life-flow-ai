@@ -140,7 +140,22 @@ export default function DashboardPage() {
         </Card>
       </motion.div>
 
-      {/* Upcoming exam */}
+      {/* Fixed expense alerts */}
+      {upcomingFixedExpenses.length > 0 && (
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={delay(4.5)}>
+          <Card className="!border-warning/30 bg-warning/5">
+            <div className="flex items-center gap-2 mb-2">
+              <Wallet className="w-4 h-4 text-warning" />
+              <span className="text-xs font-semibold text-warning-foreground">Gastos fixos vencendo</span>
+            </div>
+            {upcomingFixedExpenses.map(fe => (
+              <p key={fe.id} className="text-xs text-muted-foreground">{fe.name} — R$ {fe.amount.toFixed(2)} no dia {fe.dueDay}</p>
+            ))}
+          </Card>
+        </motion.div>
+      )}
+
+
       {nextExam && !focusActive && (
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={delay(5)}>
           <Card onClick={() => navigate("/studies")} className="!border-primary/30 bg-primary/5">
