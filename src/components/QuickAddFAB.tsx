@@ -6,6 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
 import { useFinancesStore, FINANCE_CATEGORIES, type FinanceCategory } from "@/stores/financesStore";
+import { useTasksStore } from "@/stores/tasksStore";
+import type { Task } from "@/data/mockData";
 
 type FABAction = null | "task" | "expense" | "study";
 
@@ -17,7 +19,6 @@ export default function QuickAddFAB() {
 
   return (
     <>
-      {/* FAB button */}
       <motion.button
         onClick={() => setOpen(!open)}
         className="fixed bottom-20 right-4 z-50 w-14 h-14 rounded-full gradient-primary shadow-lg flex items-center justify-center active:scale-95 transition-transform"
@@ -28,29 +29,18 @@ export default function QuickAddFAB() {
         </motion.div>
       </motion.button>
 
-      {/* Options */}
       <AnimatePresence>
         {open && !action && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            className="fixed bottom-36 right-4 z-50 flex flex-col gap-3 items-end"
-          >
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }}
+            className="fixed bottom-36 right-4 z-50 flex flex-col gap-3 items-end">
             {[
               { key: "task" as const, icon: CheckSquare, label: "Nova tarefa", color: "bg-primary" },
               { key: "expense" as const, icon: Wallet, label: "Novo gasto", color: "bg-destructive" },
               { key: "study" as const, icon: BookOpen, label: "Nova aula", color: "bg-accent" },
             ].map((item, i) => (
-              <motion.button
-                key={item.key}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 20 }}
-                transition={{ delay: i * 0.05 }}
-                onClick={() => setAction(item.key)}
-                className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-card border border-border/50 shadow-md"
-              >
+              <motion.button key={item.key} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }}
+                transition={{ delay: i * 0.05 }} onClick={() => setAction(item.key)}
+                className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-card border border-border/50 shadow-md">
                 <span className="text-sm font-medium">{item.label}</span>
                 <div className={`w-8 h-8 rounded-full ${item.color} flex items-center justify-center`}>
                   <item.icon className="w-4 h-4 text-primary-foreground" />
@@ -61,23 +51,18 @@ export default function QuickAddFAB() {
         )}
       </AnimatePresence>
 
-      {/* Task dialog */}
       <Dialog open={action === "task"} onOpenChange={() => close()}>
         <DialogContent className="max-w-sm">
           <DialogHeader><DialogTitle>Nova tarefa rápida</DialogTitle></DialogHeader>
           <QuickTaskForm onDone={close} />
         </DialogContent>
       </Dialog>
-
-      {/* Expense dialog */}
       <Dialog open={action === "expense"} onOpenChange={() => close()}>
         <DialogContent className="max-w-sm">
           <DialogHeader><DialogTitle>Registrar gasto</DialogTitle></DialogHeader>
           <QuickExpenseForm onDone={close} />
         </DialogContent>
       </Dialog>
-
-      {/* Study dialog */}
       <Dialog open={action === "study"} onOpenChange={() => close()}>
         <DialogContent className="max-w-sm">
           <DialogHeader><DialogTitle>Novo item de estudo</DialogTitle></DialogHeader>
@@ -90,11 +75,15 @@ export default function QuickAddFAB() {
 
 function QuickTaskForm({ onDone }: { onDone: () => void }) {
   const [title, setTitle] = useState("");
-  const [priority, setPriority] = useState("média");
+  const [priority, setPriority] = useState<Task["priority"]>("média");
+  const addTask = useTasksStore(s => s.addTask);
 
   const submit = () => {
     if (!title.trim()) return;
-    // Just show success for now — will integrate with task store later
+    addTask({
+      title: title.trim(), category: "Pessoal", priority,
+      dueDate: new Date().toISOString().split("T")[0], done: false,
+    });
     toast.success(`Tarefa "${title}" criada!`);
     onDone();
   };
@@ -102,7 +91,7 @@ function QuickTaskForm({ onDone }: { onDone: () => void }) {
   return (
     <div className="space-y-3 mt-2">
       <Input placeholder="O que precisa fazer?" value={title} onChange={e => setTitle(e.target.value)} />
-      <Select value={priority} onValueChange={setPriority}>
+      <Select value={priority} onValueChange={v => setPriority(v as Task["priority"])}>
         <SelectTrigger><SelectValue /></SelectTrigger>
         <SelectContent>
           <SelectItem value="alta">Alta prioridade</SelectItem>
@@ -124,12 +113,8 @@ function QuickExpenseForm({ onDone }: { onDone: () => void }) {
   const submit = () => {
     if (!desc.trim() || !amount) return;
     addTransaction({
-      description: desc,
-      amount: -Math.abs(Number(amount)),
-      category,
-      date: new Date().toISOString().split("T")[0],
-      isIncome: false,
-      paymentMethod: "pix",
+      description: desc, amount: -Math.abs(Number(amount)), category,
+      date: new Date().toISOString().split("T")[0], isIncome: false, paymentMethod: "pix",
     });
     toast.success(`Gasto de R$${amount} registrado!`);
     onDone();
@@ -141,9 +126,7 @@ function QuickExpenseForm({ onDone }: { onDone: () => void }) {
       <Input placeholder="Valor (R$)" type="number" value={amount} onChange={e => setAmount(e.target.value)} />
       <Select value={category} onValueChange={v => setCategory(v as FinanceCategory)}>
         <SelectTrigger><SelectValue /></SelectTrigger>
-        <SelectContent>
-          {FINANCE_CATEGORIES.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}
-        </SelectContent>
+        <SelectContent>{FINANCE_CATEGORIES.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent>
       </Select>
       <button onClick={submit} className="w-full py-3 rounded-xl bg-destructive text-destructive-foreground font-semibold">Registrar gasto</button>
     </div>
