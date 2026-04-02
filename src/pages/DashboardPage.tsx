@@ -2,9 +2,10 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { MessageCircle, CheckSquare, BookOpen, Wallet, Flame, TrendingUp, Calendar, ArrowRight, ChevronRight, Clock, Target } from "lucide-react";
-import { mockTasks, mockHabits, mockSubjects } from "@/data/mockData";
+import { mockHabits, mockSubjects } from "@/data/mockData";
 import { useUserStore } from "@/stores/userStore";
 import { useFinancesStore } from "@/stores/financesStore";
+import { useTasksStore } from "@/stores/tasksStore";
 import { useFocusModeStore } from "@/stores/focusModeStore";
 import DailyBriefing from "@/components/DailyBriefing";
 import ProgressStats from "@/components/ProgressStats";
@@ -43,7 +44,9 @@ export default function DashboardPage() {
   useEffect(() => { recordVisit(); }, [recordVisit]);
 
   const displayName = name || "Lucas";
-  const todayTasks = mockTasks.filter(t => !t.done).slice(0, 3);
+  const allTasks = useTasksStore(s => s.tasks);
+  const upcomingFixedExpenses = useFinancesStore(s => s.getUpcomingFixedExpenses(3));
+  const todayTasks = allTasks.filter(t => !t.done).slice(0, 3);
   const doneHabits = mockHabits.filter(h => h.done).length;
   const nextExam = mockSubjects[0];
 
@@ -137,7 +140,22 @@ export default function DashboardPage() {
         </Card>
       </motion.div>
 
-      {/* Upcoming exam */}
+      {/* Fixed expense alerts */}
+      {upcomingFixedExpenses.length > 0 && (
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={delay(4.5)}>
+          <Card className="!border-warning/30 bg-warning/5">
+            <div className="flex items-center gap-2 mb-2">
+              <Wallet className="w-4 h-4 text-warning" />
+              <span className="text-xs font-semibold text-warning-foreground">Gastos fixos vencendo</span>
+            </div>
+            {upcomingFixedExpenses.map(fe => (
+              <p key={fe.id} className="text-xs text-muted-foreground">{fe.name} — R$ {fe.amount.toFixed(2)} no dia {fe.dueDay}</p>
+            ))}
+          </Card>
+        </motion.div>
+      )}
+
+
       {nextExam && !focusActive && (
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={delay(5)}>
           <Card onClick={() => navigate("/studies")} className="!border-primary/30 bg-primary/5">
