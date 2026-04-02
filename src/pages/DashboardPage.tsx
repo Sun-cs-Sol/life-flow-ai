@@ -44,7 +44,9 @@ export default function DashboardPage() {
   useEffect(() => { recordVisit(); }, [recordVisit]);
 
   const displayName = name || "Lucas";
-  const todayTasks = mockTasks.filter(t => !t.done).slice(0, 3);
+  const allTasks = useTasksStore(s => s.tasks);
+  const upcomingFixedExpenses = useFinancesStore(s => s.getUpcomingFixedExpenses(3));
+  const todayTasks = allTasks.filter(t => !t.done).slice(0, 3);
   const doneHabits = mockHabits.filter(h => h.done).length;
   const nextExam = mockSubjects[0];
 
